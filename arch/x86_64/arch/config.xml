@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<image schemaversion="6.8" name="LimeJeOS-Arch">
+    <description type="system">
+        <author>David Cassany</author>
+        <contact>dcassany@suse.de</contact>
+        <specification>Arch JeOS</specification>
+    </description>
+    <preferences>
+        <version>1.0.0</version>
+        <packagemanager>pacman</packagemanager>
+        <locale>en_US</locale>
+        <keytable>us</keytable>
+        <timezone>UTC</timezone>
+        <rpm-check-signatures>false</rpm-check-signatures>
+	<type image="iso" flags="overlay" hybrid="true" hybridpersistent_filesystem="ext4" hybridpersistent="true"/>
+	<type image="vmx" primary="true" filesystem="ext4" bootloader="grub2"/>
+	<type image="oem" initrd_system="dracut" filesystem="ext4" bootloader="grub2"/>
+    </preferences>
+    <users>
+        <user password="$1$wYJUgpM5$RXMMeASDc035eX.NbYWFl0" home="/root" name="root" groups="root"/>
+    </users>
+    <repository alias="ArchOS" components="core extra community">
+        <source path="http://ftp.heanet.ie/mirrors/ftp.archlinux.org/$repo/os/$arch"/>
+    </repository>
+    <packages type="image">
+	<package name="dracut"/>
+	<package name="udev"/>
+	<package name="systemd"/>
+	<package name="dhclient"/>
+	<package name="openssh"/>
+	<package name="busybox"/>
+	<package name="binutils"/>
+	<package name="base"/>
+	<package name="parted"/>
+	<package name="ifplugd"/>
+	<package name="systemd-resolvconf"/>
+	<package name="efibootmgr"/>
+    </packages>
+    <packages type="iso">
+        <package name="syslinux"/>
+    </packages>
+    <packages type="bootstrap">
+        <package name="filesystem"/>
+	<package name="grub"/>
+	<package name="pacman-mirrorlist"/>
+	<package name="archlinux-keyring"/>
+    </packages>
+</image>
